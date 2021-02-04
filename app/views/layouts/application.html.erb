@@ -11,13 +11,24 @@
   </head>
 
   <body>
-    <% if flash[:notice] %>
+    <nav class='nav navbar bg-orange'>
+      <%= link_to 'Home', root_path, class:'navbar-brand text-white' %>
       <div>
+        <% if session[:current_user_id].nil? %>
+          <%= link_to 'Sign Up', new_user_path, class:'btn btn-outline-light' %>
+          <%= link_to 'Sign In', new_user_path, class:'btn btn-outline-light' %>
+        <% else %>
+          <%= link_to 'New Event', new_event_path, class:'btn btn-success' %>
+        <% end %>
+      </div>
+    </nav>
+    <% if flash[:notice] %>
+      <div class='alert alert-success'>
         <%= flash[:notice] %>
       </div>
     <% end %>
     <% if flash[:error] %>
-      <div>
+      <div class='alert alert-danger'>
         <%= flash[:error] %>
       </div>
     <% end %>
