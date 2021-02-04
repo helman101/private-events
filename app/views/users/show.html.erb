@@ -11,9 +11,20 @@
 
 <h3>Events to attend</h3>
 <p>
+  <h4>Upcoming Events</h4>
   <ul>
     <% @user.attended_events.each do |event| %>
-      <li><%= link_to event.name, event %></li>
+      <% if event.date > Time.now %>
+        <li><%= link_to event.name, event %></li>
+      <% end %>
+    <% end %>
+  </ul> 
+  <h4>Previus Events</h4>
+  <ul>
+    <% @user.attended_events.each do |event| %>
+      <% if event.date < Time.now %>
+        <li><%= link_to event.name, event %></li>
+      <% end %>
     <% end %>
   </ul>
 </p>
