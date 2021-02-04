@@ -1,19 +1,29 @@
-<h1>Events</h1>
-<h2>Upcoming events</h2>
-<% @events.upcoming.each do |event| %>
-  <div>
-    <h3><%= event.name %></h3>
-    <p><%= event.description %></p>
-    <span><%= event.date.strftime("%-d-%-m-%y %H:%M") %></span>
+<div class="container mt-5 border p-3">
+  <h1>Events</h1>
+  <div class="container">
+    <h2>Upcoming events</h2>
+    <div class="container rounded border border-warning">
+      <% @events.upcoming.each do |event| %>
+        <div>
+          <h3><%= link_to event.name, event_path(event), class:'link-light' %></h3>
+          <p><%= event.description %></p>
+          <span><%= event.date.strftime("%-d-%-m-%y %H:%M") %></span>
+        </div>
+      <% end %>
+    </div>
   </div>
-<% end %>
-<h2>Past events</h2>
-<% @events.past.each do |event| %>
-  <div>
-    <h3><%= event.name %></h3>
-    <p><%= event.description %></p>
-    <span><%= event.date.strftime("%-d-%-m-%y %H:%M") %></span>
+  <div class="container">
+    <h2>Past events</h2>
+    <div class="container rounded border border-warning">
+      <% @events.past.each do |event| %>
+        <div>
+          <h3><%= link_to event.name, event_path(event), class:'link-light' %></h3>
+          <p><%= event.description %></p>
+          <span><%= event.date.strftime("%-d-%-m-%y %H:%M") %></span>
+        </div>
+      <% end %>
+    </div>
   </div>
-<% end %>
+</div>
 
 

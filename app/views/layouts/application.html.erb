@@ -12,26 +12,32 @@
 
   <body>
     <nav class='nav navbar bg-orange'>
-      <%= link_to 'Home', root_path, class:'navbar-brand text-white' %>
+      <% if user_signed_in? %>
+        <%= link_to current_user.name, user_path(current_user), class:'navbar-brand text-white' %>
+      <% else %>
+        <%= link_to 'Home', root_path, class:'navbar-brand text-white' %>
+      <% end %>   
       <div>
-        <% if session[:current_user_id].nil? %>
-          <%= link_to 'Sign Up', new_user_path, class:'btn btn-outline-light' %>
-          <%= link_to 'Sign In', new_user_path, class:'btn btn-outline-light' %>
-        <% else %>
+        <%= link_to 'All Events', events_path, class:'btn btn-outline-light' %>
+        <% if user_signed_in? %>
           <%= link_to 'New Event', new_event_path, class:'btn btn-success' %>
+          <%= link_to 'Sign Out', session_path(session), method: 'Delete', class:'btn btn-danger' %>
+        <% else %>
+          <%= link_to 'Sign Up', new_user_path, class:'btn btn-outline-light' %>
+          <%= link_to 'Sign In', new_session_path, class:'btn btn-outline-light' %>
         <% end %>
       </div>
     </nav>
     <% if flash[:notice] %>
-      <div class='alert alert-success'>
+      <div class='alert alert-success text-center'>
         <%= flash[:notice] %>
       </div>
     <% end %>
-    <% if flash[:error] %>
-      <div class='alert alert-danger'>
-        <%= flash[:error] %>
+    <% if flash[:alert] %>
+      <div class='alert alert-danger text-center'>
+        <%= flash[:alert] %>
       </div>
-    <% end %>
+    <% end %>  
 
     <%= yield %>
   </body>

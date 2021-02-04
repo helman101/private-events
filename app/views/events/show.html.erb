@@ -1,10 +1,16 @@
-<h1><%= @event.name %></h1>
-<p><%= @event.description %></p>
-<p><%= @event.date %></p>
-<span><%= @event.creator.name %></span>
-<h3>Attendance</h3>
-<ul>
-  <% @event.attendees.each do |attendee| %>
-    <ul><%= attendee.name %></ul>
-  <% end %>
-</ul>
+<div class="container mt-5">
+  <h1><%= @event.name %></h1>
+  <div class="container p-3">
+    <p><%= @event.description %></p>
+    <p><%= @event.date %></p>
+    <span><%= @event.creator.name %></span>
+  </div>
+  <div class="container mt-5">
+    <h3>Attendance</h3>
+    <ul>
+      <% @event.attendees.each do |attendee| %>
+        <li><%= attendee.name %></li>
+      <% end %>
+    </ul>
+  </div>
+</div>
