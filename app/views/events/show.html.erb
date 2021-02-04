@@ -2,3 +2,9 @@
 <p><%= @event.description %></p>
 <p><%= @event.date %></p>
 <span><%= @event.creator.name %></span>
+<h3>Attendance</h3>
+<ul>
+  <% @event.attendees.each do |attendee| %>
+    <ul><%= attendee.name %></ul>
+  <% end %>
+</ul>
