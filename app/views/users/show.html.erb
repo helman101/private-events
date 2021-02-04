@@ -1,2 +1,8 @@
 <h1><%= @user.name %></h1>
-<p><%= @user.created_at %></p>
+<p>
+  <ul>
+    <%= @user.created_events.each do |event| %>
+      <li><%= link_to event.name, event %></li>
+    <% end %>
+  </ul>
+</p>
