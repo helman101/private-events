@@ -10,8 +10,8 @@ class EventsController < ApplicationController
   def create
     @user = User.find(session[:current_user_id])
     @event = @user.created_events.build(event_params)
-    @user.attended_events << @event
     if @event.save
+      @user.attended_events << @event
       redirect_to @user, notice: 'Event created successfully'
     else
       render :new 

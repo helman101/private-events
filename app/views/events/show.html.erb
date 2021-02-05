@@ -9,8 +9,19 @@
     <h3>Attendance</h3>
     <ul>
       <% @event.attendees.each do |attendee| %>
-        <li><%= attendee.name %></li>
+        <li><%= link_to attendee.name, user_path(attendee) %></li>
       <% end %>
     </ul>
   </div>
+  <% if current_user.id == @event.creator.id %>
+    <div class='container'>
+      <h3>Invite someone</h3>
+      <%= form_for(:attendance, url: attendances_path) do |f| %>
+        <%= f.label :name %>
+        <%= f.text_field :name %>
+        <%= f.hidden_field :id, value: @event.id %>
+        <%= f.submit 'Invite', class:'btn btn-success' %>
+      <% end %>
+    </div>
+  <% end %>
 </div>
