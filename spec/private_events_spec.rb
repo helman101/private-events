@@ -1,6 +1,5 @@
 require 'rails_helper'
 
-
 describe User, type: :model do
   before(:all) do
     User.create!(name: 'Test')
@@ -27,7 +26,7 @@ describe Event, type: :model do
   end
 end
 
-describe Attendance, type: :model do 
+describe Attendance, type: :model do
   before(:all) do
     @user = User.first
     @event = @user.created_events.build(name: 'Test title', description: 'Test', date: '13-10-1997', creator_id: 1)
@@ -75,5 +74,4 @@ describe 'Private Events', type: :system do
       expect(page).to have_content('Create an Event')
     end
   end
-  
 end
