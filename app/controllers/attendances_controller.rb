@@ -11,22 +11,20 @@ class AttendancesController < ApplicationController
       user.attended_events << @event
       redirect_to event_path(@event), notice: 'Invitation send successfully'
     else
-      if user && @event.attendees.find(user.id)
-        flash[:alert] = 'This user is already invited'
-      else
-        flash[:alert] = "This user doesn't exist"
-      end
+      flash[:alert] = if user && @event.attendees.find(user.id)
+                        'This user is already invited'
+                      else
+                        "This user doesn't exist"
+                      end
       render 'events/show'
     end
   end
 
-  def destroy
-  end
+  def destroy; end
 
   private
 
   def attendance_params
     params.require(:attendance).permit(:name, :id)
   end
-
 end

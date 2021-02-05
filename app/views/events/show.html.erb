@@ -2,7 +2,7 @@
   <h1><%= @event.name %></h1>
   <div class="container p-3">
     <p><%= @event.description %></p>
-    <p><%= @event.date %></p>
+    <p><%= @event.date.strftime("Event date: %m/%d/%Y") %></p>
     <span><%= @event.creator.name %></span>
   </div>
   <div class="container mt-5">
@@ -20,7 +20,7 @@
         <%= f.label :name %>
         <%= f.text_field :name %>
         <%= f.hidden_field :id, value: @event.id %>
-        <%= f.submit 'Invite', class:'btn btn-success' %>
+        <%= f.submit 'Invite', class:'btn btn-info' %>
       <% end %>
     </div>
   <% end %>

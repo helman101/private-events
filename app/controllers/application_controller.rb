@@ -5,7 +5,6 @@ class ApplicationController < ActionController::Base
   def user_signed_in?
     !session[:current_user_id].nil?
   end
-  
 
   def current_user
     User.find(session[:current_user_id])

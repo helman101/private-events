@@ -14,7 +14,7 @@ class EventsController < ApplicationController
       @user.attended_events << @event
       redirect_to @user, notice: 'Event created successfully'
     else
-      render :new 
+      render :new
     end
   end
 
