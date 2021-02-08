@@ -6,8 +6,6 @@ class EventsController < ApplicationController
   def show
     @event = Event.find(params[:id])
     @attendees = @event.attendees
-    @creator = @event.creator
-    @date = @event.date.strftime('Event date: %m/%d/%Y')
   end
 
   def create

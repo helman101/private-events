@@ -7,6 +7,7 @@ class SessionsController < ApplicationController
       session[:current_user_id] = user.id
       redirect_to user, notice: 'You Sign In succesfully'
     else
+      flash.now[:alert] = 'This user doesn\'t exist'
       render :new
     end
   end

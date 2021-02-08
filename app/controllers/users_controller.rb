@@ -9,7 +9,8 @@ class UsersController < ApplicationController
       session[:current_user_id] = @user.id
       redirect_to @user, notice: 'You are successfully Sing up'
     else
-      render :new, alert: 'This username is taken'
+      flash.now[:alert] = 'This user is taken'
+      render :new
     end
   end
 

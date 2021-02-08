@@ -2,41 +2,36 @@
   <h1><%= @event.name %></h1>
   <div class="container p-3">
     <p><%= @event.description %></p>
-    <p><%= @date %></p>
-    <span><%= @creator.name %></span>
+    <p><%= @event.date.strftime('Event date: %m/%d/%Y') %></p>
+    <span><%= @event.creator.name %></span>
   </div>
   <div class="container mt-5">
     <h3>Attendance</h3>
     <ul>
-      <% @attendees.each do |attendee| %>
+      <% @event.attendees.each do |attendee| %>
         <li><%= link_to attendee.name, user_path(attendee) %></li>
       <% end %>
     </ul>
   </div>
   
-  <% if user_signed_in? %>
-    <% if event_creator? %>
-      <div class='container'>
-        <h3>Invite someone</h3>
-        <%= form_for(:attendance, url: attendances_path) do |f| %>
-          <%= f.label :name %>
-          <%= f.text_field :name %>
-          <%= f.hidden_field :id, value: @event.id %>
-          <%= f.submit 'Invite', class:'btn btn-info' %>
-        <% end %>
-      </div>
-    <% end %>
-      
-    <% unless event_creator? %>
-      <div class='container'>
-        <h3>Attend this event</h3>
-        <%= form_for(:attendance, url: attendances_path) do |f| %>
-          <%= f.hidden_field :name, value: current_user.name %>
-          <%= f.hidden_field :id, value: @event.id %>
-          <%= f.submit 'Attend', class:'btn btn-info' %>
-        <% end %>
-      </div>
-    <% end %>
+  <% if user_signed_in? && event_creator? %>
+    <div class='container'>
+      <h3>Invite someone</h3>
+      <%= form_for(:attendance, url: attendances_path) do |f| %>
+        <%= f.label :name %>
+        <%= f.text_field :name, required: true %>
+        <%= f.hidden_field :id, value: @event.id %>
+        <%= f.submit 'Invite', class:'btn btn-info' %>
+      <% end %>
+    </div>
+  <% elsif user_signed_in? && !event_creator? %>
+    <div class='container'>
+      <h3>Attend this event</h3>
+      <%= form_for(:attendance, url: attendances_path) do |f| %>
+        <%= f.hidden_field :name, value: current_user.name %>
+        <%= f.hidden_field :id, value: @event.id %>
+        <%= f.submit 'Attend', class:'btn btn-info' %>
+      <% end %>
+    </div>
   <% end %>
-  
 </div>
