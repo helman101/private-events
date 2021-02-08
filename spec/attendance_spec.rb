@@ -1,34 +1,27 @@
 require 'rails_helper'
 
 describe Event, type: :model do
-  let(:att) { Attendance.new }
   let(:user) { User.create(name: 'user') }
   let(:evt) { Event.create(name: 'Test', description: 'Test description', date: Date.current) }
+  subject { Attendance.new(attendee: user, attended_event: evt) }
 
-  context 'associations' do
-    it 'returns true when do have attendee and attended_event' do
-      att.attendee = user
-      att.attended_event = evt
-      expect(att.valid?).to be true
-    end
-
-    it 'returns false when doesn\'t have attendee or attended_event' do
-      att.attended_event = evt
-      expect(att.valid?).to be false
-    end
+  context 'Associations' do
+    it { should belong_to(:attendee).class_name('User') }
+    it { should belong_to(:attended_event).class_name('Event') }
   end
 
-  context 'relations' do
+  context 'Validations' do
+    it { should validate_presence_of(:attendee_id) }
+    it { should validate_presence_of(:attended_event_id) }
+  end
+
+  context 'Relations' do
     it 'attendee is equal to user' do
-      att.attendee = user
-      att.attended_event = evt
-      expect(att.attendee).to eq(user)
+      expect(subject.attendee).to eq(user)
     end
 
     it 'attended_event is equal to event' do
-      att.attendee = user
-      att.attended_event = evt
-      expect(att.attended_event).to eq(evt)
+      expect(subject.attended_event).to eq(evt)
     end
   end
 end

@@ -2,44 +2,19 @@ require 'rails_helper'
 
 describe Event, type: :model do
   let(:user) { User.new }
-  let(:evt) { Event.new(creator: user) }
-  context 'validations' do
-    it 'returns true when event date is present' do
-      evt.description = 'test description'
-      evt.date = '13-10-2021'
-      evt.name = 'test'
-      expect(evt.valid?).to be true
-    end
+  subject { Event.new(name: 'Test', description: 'description', date: Date.current, creator: user) }
 
-    it 'returns false when event date isn\'t present' do
-      evt.description = 'test description'
-      evt.name = 'test'
-      expect(evt.valid?).to be false
-    end
-
-    it 'returns true when event description is present' do
-      evt.description = 'test description'
-      evt.date = '13-10-2021'
-      evt.name = 'test'
-      expect(evt.valid?).to be true
-    end
-
-    it 'returns false when event description isn\'t present' do
-      evt.date = '13-10-2021'
-      evt.name = 'test'
-      expect(evt.valid?).to be false
+  context 'Validations' do
+    context 'Precense' do
+      it { should validate_presence_of(:name) }
+      it { should validate_presence_of(:description) }
+      it { should validate_presence_of(:date) }
     end
   end
 
-  context 'associations' do
-    it 'returns true if event have a creator' do
-      ev = Event.new(date: Date.current, name: 'Test 2', description: 'Test description 2', creator: user)
-      expect(ev.valid?).to be true
-    end
-
-    it 'returns false if event don\'t have a creator' do
-      ev = Event.new(date: Date.current, name: 'Test 2', description: 'Test description 2')
-      expect(ev.valid?).to be false
-    end
+  context 'Associations' do
+    it { should belong_to(:creator).class_name('User') }
+    it { should have_many(:attendances) }
+    it { should have_many(:attendees).through(:attendances) }
   end
 end

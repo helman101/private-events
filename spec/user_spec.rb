@@ -14,4 +14,10 @@ describe User, type: :model do
       it { should validate_uniqueness_of(:name) }
     end
   end
+
+  context 'Associations' do
+    it { should have_many(:created_events).class_name('Event') }
+    it { should have_many(:attendances) }
+    it { should have_many(:attended_events).through(:attendances) }
+  end
 end
