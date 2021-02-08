@@ -6,7 +6,7 @@ describe User, type: :model do
   end
   let(:user) { User.new }
 
-  context 'validate presence of require atributes' do
+  context 'validations' do
     it 'returns true when user have a name' do
       user.name = 'user'
       expect(user.valid?).to be true
@@ -16,7 +16,7 @@ describe User, type: :model do
     end
   end
 
-  context 'validate username uniqueness' do
+  context 'validations' do
     it 'returns true when username is unique' do
       user.name = 'user'
       expect(user.valid?).to be true

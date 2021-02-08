@@ -5,7 +5,7 @@ describe Event, type: :model do
   let(:user) { User.create(name: 'user') }
   let(:evt) { Event.create(name: 'Test', description: 'Test description', date: Date.current) }
 
-  context 'validate models associations' do
+  context 'associations' do
     it 'returns true when do have attendee and attended_event' do
       att.attendee = user
       att.attended_event = evt
@@ -18,7 +18,7 @@ describe Event, type: :model do
     end
   end
 
-  context 'relations work propertly' do
+  context 'relations' do
     it 'attendee is equal to user' do
       att.attendee = user
       att.attended_event = evt
