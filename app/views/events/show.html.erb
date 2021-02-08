@@ -2,13 +2,13 @@
   <h1><%= @event.name %></h1>
   <div class="container p-3">
     <p><%= @event.description %></p>
-    <p><%= @event.date.strftime("Event date: %m/%d/%Y") %></p>
-    <span><%= @event.creator.name %></span>
+    <p><%= @date %></p>
+    <span><%= @creator.name %></span>
   </div>
   <div class="container mt-5">
     <h3>Attendance</h3>
     <ul>
-      <% @event.attendees.each do |attendee| %>
+      <% @attendees.each do |attendee| %>
         <li><%= link_to attendee.name, user_path(attendee) %></li>
       <% end %>
     </ul>
