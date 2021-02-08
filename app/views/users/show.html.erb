@@ -26,7 +26,7 @@
       </ul> 
     </div>
     <div class="container">
-      <h4>Previus Events</h4>
+      <h4>Previous Events</h4>
       <ul>
         <% @user.attended_events.each do |event| %>
           <% if event.date < Time.now %>

@@ -13,15 +13,30 @@
       <% end %>
     </ul>
   </div>
-  <% if current_user.id == @event.creator.id %>
-    <div class='container'>
-      <h3>Invite someone</h3>
-      <%= form_for(:attendance, url: attendances_path) do |f| %>
-        <%= f.label :name %>
-        <%= f.text_field :name %>
-        <%= f.hidden_field :id, value: @event.id %>
-        <%= f.submit 'Invite', class:'btn btn-info' %>
-      <% end %>
-    </div>
+  
+  <% if user_signed_in? %>
+    <% if event_creator? %>
+      <div class='container'>
+        <h3>Invite someone</h3>
+        <%= form_for(:attendance, url: attendances_path) do |f| %>
+          <%= f.label :name %>
+          <%= f.text_field :name %>
+          <%= f.hidden_field :id, value: @event.id %>
+          <%= f.submit 'Invite', class:'btn btn-info' %>
+        <% end %>
+      </div>
+    <% end %>
+      
+    <% unless event_creator? %>
+      <div class='container'>
+        <h3>Attend this event</h3>
+        <%= form_for(:attendance, url: attendances_path) do |f| %>
+          <%= f.hidden_field :name, value: current_user.name %>
+          <%= f.hidden_field :id, value: @event.id %>
+          <%= f.submit 'Attend', class:'btn btn-info' %>
+        <% end %>
+      </div>
+    <% end %>
   <% end %>
+  
 </div>

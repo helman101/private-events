@@ -42,17 +42,21 @@ To get a local copy up and running follow these simple example steps:
 ### Install
 
 - Run `bundle install`
+- Run `yarn install`
 - Migrate de database `rails db:migrate`
 - generate devise `rails generate devise:install`
 - generate rspec `rails generate rspec:install`
 
 
-### Run tests
+### Run page
 
 - Run `rails s`  or  `rails server`
 - Now go to  http://localhost:3000
 - You will se the project working! 
 
+### Run test
+
+- Run `rspec` in your terminal to see all the test pass 
 
 ## Authors
 
