@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe 'Event pages', type: :system do
   before(:all) do
-    user = User.create(name: 'Test')
+    User.create(name: 'Test')
   end
 
   it 'Show a create event link if a user is signed in' do

@@ -5,7 +5,7 @@ describe 'Navbar', type: :system do
     User.create(name: 'Test')
   end
 
-  it 'Show current user name when a user is signed in' do 
+  it 'Show current user name when a user is signed in' do
     visit new_session_path
     fill_in 'Name', with: 'Test'
     click_button 'Sign In!'

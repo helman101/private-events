@@ -1,5 +1,4 @@
 class EventsController < ApplicationController
-
   def new
     @event = Event.new
   end
@@ -8,7 +7,7 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     @attendees = @event.attendees
     @creator = @event.creator
-    @date = @event.date.strftime("Event date: %m/%d/%Y")
+    @date = @event.date.strftime('Event date: %m/%d/%Y')
   end
 
   def create
