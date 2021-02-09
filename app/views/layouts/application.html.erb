@@ -11,9 +11,13 @@
   </head>
 
   <body>
-    <%= render 'shared/navbar' %>
-    <%= render 'shared/alerts' %>
+    <nav class='nav navbar bg-orange'>
+      <%= navbar %>
+    </nav>
+
+    <%= alerts %>
 
     <%= yield %>
+    
   </body>
 </html>

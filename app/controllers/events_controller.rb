@@ -1,4 +1,6 @@
 class EventsController < ApplicationController
+  include EventsHelper
+
   def new
     @event = Event.new
   end
