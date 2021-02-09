@@ -1,0 +1,31 @@
+<div class="container w-50 mt-5 border">
+  <h1><%= @user.name %></h1>
+
+  <div class="container">
+    <h3>Created events</h3>
+    <p>
+      <ul>
+        <%= created(@created_events) %>
+      </ul>
+    </p>
+  </div>
+
+  <div class="container">
+    <h3>Events to attend</h3>
+  <p>
+    <div class="container">
+      <h4>Upcoming Events</h4>
+      <ul>
+        <%= upcoming(@upcoming_events) %>
+      </ul> 
+    </div>
+    <div class="container">
+      <h4>Previous Events</h4>
+      <ul>
+        <%= past(@past_events) %>
+      </ul>
+    </div>
+    </p>
+  </div>
+  
+</div>

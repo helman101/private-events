@@ -1,0 +1,5 @@
+<div class='rounded border border-warning p-3 m-1' >
+  <h3><%= link_to past.name, event_path(past), class:'link-light' %></h3>
+  <p><%= past.description %></p>
+  <span><%= past.date.strftime("Event date: %m/%d/%Y") %></span>
+</div>
