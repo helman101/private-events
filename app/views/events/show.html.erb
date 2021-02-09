@@ -8,9 +8,7 @@
   <div class="container mt-5">
     <h3>Attendance</h3>
     <ul>
-      <% @event.attendees.each do |attendee| %>
-        <li><%= link_to attendee.name, user_path(attendee) %></li>
-      <% end %>
+      <%= attendee_name(@event) %>
     </ul>
   </div>
 

@@ -3,25 +3,13 @@
   <div class="container">
     <h2>Upcoming events</h2>
     <div class="container">
-      <% @upcoming_events.each do |event| %>
-        <div class='rounded border border-warning p-3 m-1'>
-          <h3><%= link_to event.name, event_path(event), class:'link-light' %></h3>
-          <p><%= event.description %></p>
-          <span><%= event.date.strftime("Event date: %m/%d/%Y") %></span>
-        </div>
-      <% end %>
+      <%= events_upcoming(@upcoming_events) %>
     </div>
   </div>
   <div class="container">
     <h2>Past events</h2>
     <div class="container">
-      <% @past_events.each do |event| %>
-        <div class='rounded border border-warning p-3 m-1' >
-          <h3><%= link_to event.name, event_path(event), class:'link-light' %></h3>
-          <p><%= event.description %></p>
-          <span><%= event.date.strftime("Event date: %m/%d/%Y") %></span>
-        </div>
-      <% end %>
+      <%= events_past(@past_events) %>
     </div>
   </div>
 </div>

@@ -1,0 +1,5 @@
+<div class='rounded border border-warning p-3 m-1'>
+  <h3><%= link_to upcoming.name, event_path(upcoming), class:'link-light' %></h3>
+  <p><%= upcoming.description %></p>
+  <span><%= upcoming.date.strftime("Event date: %m/%d/%Y") %></span>
+</div>

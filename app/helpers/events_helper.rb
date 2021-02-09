@@ -6,4 +6,16 @@ module EventsHelper
       render partial: 'events/attend'
     end
   end
+
+  def attendee_name(event)
+    render partial: 'shared/attendee', collection: event.attendees
+  end
+
+  def events_upcoming(events)
+    render partial: 'events/upcoming', collection: events
+  end
+
+  def events_past(events)
+    render partial: 'events/past', collection: events
+  end
 end
